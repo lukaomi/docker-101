@@ -2,12 +2,16 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
 
+RUN npm install -g nodemon
 RUN npm install
 
 COPY . .
 
+ENV PORT=80
+ENV MODE="dev"
+
 EXPOSE 80
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
