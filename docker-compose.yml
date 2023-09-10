@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  todo-list:
+    build:
+      context: ./todo-list-service
+    volumes:
+      - ./todo-list-service:/app
+    depends_on:
+      - app
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - local
+
+  app:
+    build:
+      context: ./app
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/app
+      - node_modules:/app/node_modules
+    networks:
+      - local
+
+volumes:
+  node_modules:
+  
+networks:
+  local:
