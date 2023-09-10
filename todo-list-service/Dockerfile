@@ -2,12 +2,13 @@ FROM python:3
 
 WORKDIR /app
 
-COPY /app /app
+COPY . /app
 
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-EXPOSE 80
+EXPOSE 5000
 
-ENV NAME=docker-101
+ENV NAME="Todo list service"
+ENV MODE="dev"
 
 CMD ["python", "run.py"]
